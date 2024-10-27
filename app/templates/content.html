@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add_jewelery" method="post">
+                            <div class="form-group m-2">
+                                <input class="form-control" type="text" name="title" placeholder="Название" required>
+                            </div>
+                            <div class="form-group m-2">
+                                <input class="form-control" type="number" name="price" placeholder="Цена" required>
+                            </div>
+                            <button class="btn btn-primary m-2" type="submit">
+                                Добавить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for jewelry in jeweleries %}
+                        <tr>
+                            <td>{{ jewelry.id }}</td>
+                            <td><strong>{{ jewelry.title }}</strong></td>
+                            <td>{{ jewelry.price }}</td>
+                            <td>
+                                <a class="btn btn-danger"
+                                   href="/delete_jewelry/{{ jewelry.id }}">
+                                    Удалить
+                                </a>
+                                <a class="btn btn-info"
+                                   href="/edit_jewelry/{{ jewelry.id }}">
+                                    Изменить
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add_sale" method="post">
+                            <div class="form-group m-2">
+                                <select class="form-control" name="jewelry_id" required>
+                                    {% for jewelry in jewelries %}
+                                        <option value="{{ jewelry.id }}">{{ jewelry.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group m-2">
+                                <input class="form-control" type="date" name="date" required>
+                            </div>
+                            <button class="btn btn-primary m-2" type="submit">
+                                Добавить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Изделие</th>
+                        <th>Дата</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in range(sales|length) %}
+                        <tr>
+                            <td>{{ sales[i].id }}</td>
+                            <td><strong>{{ jewelries_table[i] }}</strong></td>
+                            <td>{{ sales[i].date }}</td>
+                            <td>
+                                <a class="btn btn-danger"
+                                   href="/delete_sale/{{ sales[i].id }}">
+                                    Удалить
+                                </a>
+                                <a class="btn btn-info"
+                                   href="/edit_sale/{{ sales[i].id }}">
+                                    Изменить
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+

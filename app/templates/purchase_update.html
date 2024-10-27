@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/update_purchase/{{ purchase.id }}" method="post">
+                            <div class="form-group m-2">
+                                <select class="form-control" name="jewelry_id" required>
+                                    <option value="{{ selected_jewelry.id }}" selected>{{ selected_jewelry.title }}</option>
+                                    {% for jewelry in jewelries %}
+                                        <option value="{{ jewelry.id }}">{{ jewelry.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group m-2">
+                                <select class="form-control" name="comm_id" required>
+                                    <option value="{{ selected_comm.id }}" selected>{{ selected_comm.name + ' ' + selected_comm.surname }}</option>
+                                    {% for comm in comms %}
+                                        <option value="{{ comm.id }}">{{ comm.name + ' ' + comm.surname }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group m-2">
+                                <input class="form-control" value="{{ purchase.date }}" type="date" name="date" required>
+                            </div>
+                            <button class="btn btn-primary" type="submit">
+                                Изменить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
